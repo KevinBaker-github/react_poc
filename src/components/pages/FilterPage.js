@@ -33,44 +33,37 @@ const list = [
     }
 ];
 
-class FilterPage extends Component {
-  state = {
-    currentUserName: '',
-    currentUserEmail: ''
+const FilterPage = () => {
+      const [search, setSearch] = React.useState('');
+
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
   };
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            property: []
-        }
-    }
-  componentDidMount() {
-    const idToken = JSON.parse(localStorage.getItem('okta-token-storage'));
-    this.setState({
-      currentUserEmail: idToken.idToken.claims.email,
-      currentUserName: idToken.idToken.claims.name
-    });
-  }
-
-  render() {
-    const { currentUserEmail, currentUserName } = this.state;
-      const data = { nodes: list };
-
+ const data = {
+    nodes: list.filter((item) =>
+    item.name.toLowerCase().includes(search.toLowerCase())
+    ),
+  };
 
     return (
-     
+     <React.Fragment>
+          <label htmlFor="search">
+        Search by Task:
+        <input id="search" type="text" onChange={handleSearch} />
+      </label>
+      
             <Table data={data}>
             {(tableList) => (
-                <React.Fragment><Header>
-
+                <React.Fragment>
+                    <Header>
                         <HeaderRow>
                             <HeaderCell>Task</HeaderCell>
                             <HeaderCell>Deadline</HeaderCell>
                             <HeaderCell>Type</HeaderCell>
                             <HeaderCell>Complete</HeaderCell>
                         </HeaderRow>
-                        </Header>
+                    </Header>
                     <Body>
                         {tableList.map((item) => (
                             <Row key={item.id} item={item}>
@@ -93,8 +86,8 @@ class FilterPage extends Component {
                 </React.Fragment>
                 )}
             </Table>
-    );
-    }
+            </React.Fragment>
+        );
 
 }
 
