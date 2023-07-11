@@ -8,39 +8,43 @@ import Staff from './components/pages/Staff';
 import Login from './components/auth/Login';
 
 import './App.css';
+import FilterPage from './components/pages/FilterPage';
 
 function onAuthRequired({ history }) {
   history.push('/login');
 }
 
 class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Security
-          issuer="https://dev-409495.oktapreview.com/oauth2/default"
-          client_id="0oafhkg1yupTnPW9z0h7"
-          redirect_uri={window.location.origin + '/implicit/callback'}
-          onAuthRequired={onAuthRequired}
-        >
-          <div className="App">
-            <Navbar />
-            <div className="container">
-              <Route path="/" exact={true} component={Home} />
-              <SecureRoute path="/staff" exact={true} component={Staff} />
-              <Route
-                path="/login"
-                render={() => (
-                  <Login baseUrl="https://dev-409495.oktapreview.com" />
-                )}
-              />
-              <Route path="/implicit/callback" component={ImplicitCallback} />
-            </div>
-          </div>
-        </Security>
-      </Router>
-    );
-  }
+    render() {
+        return (
+            <Router>
+                <Security
+                    issuer="https://dev-77765312.okta.com/oauth2/default"
+                    client_id="0oaa967n8bjsX21Z85d7"
+                    redirect_uri={window.location.origin + '/implicit/callback'}
+                    onAuthRequired={onAuthRequired}
+                >
+                    <div className="App">
+                        <Navbar />
+                        <div className="container">
+                            <Route path="/" exact={true} component={Home} />
+                            <SecureRoute path="/staff" exact={true} component={Staff} />
+                            <SecureRoute path="/filterPage" exact={true} component={FilterPage} />
+
+                            <Route
+                                path="/login"
+                                render={() => (
+                                    <Login baseUrl="https://dev-77765312.okta.com" />
+                                )}
+                            />
+                            <Route path="/implicit/callback" component={ImplicitCallback} />
+                        </div>
+                    </div>
+                </Security>
+            </Router>
+        );
+    }
 }
+
 
 export default App;

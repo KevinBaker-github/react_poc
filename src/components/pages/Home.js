@@ -56,7 +56,7 @@ export default withAuth(
 
       return (
         <div className="jumbotron">
-          <h1 className="display-4">Acme Staff Portal</h1>
+          <h1 className="display-4">ReactJS Proof of Concept</h1>
           {mainContent}
         </div>
       );
