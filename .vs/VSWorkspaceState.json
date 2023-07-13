@@ -1,7 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\public",
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\auth",
+    "\\src\\components\\layout",
+    "\\src\\components\\pages"
   ],
-  "SelectedNode": "\\C:\\Users\\kevin.baker\\Source\\Repos\\react_poc",
+  "SelectedNode": "\\src\\components\\pages\\FilterPage.js",
   "PreviewInSolutionExplorer": false
 }
